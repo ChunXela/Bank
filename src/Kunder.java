@@ -1,38 +1,27 @@
-import java.nio.file.Files;
-import java.nio.file.Path;
-
+import java.util.Scanner;
 public class Kunder {
     
-    String namn;
-    String personNummer;
-    float saldo;
-    String kundNummer;
-    boolean civilstånd;
+    public String namn;
+    public String personNummer;
+    public float saldo;
+    public String kundNummer;
+    public boolean civilstånd;
 
-    void nyKund(String namn, String personNummer, float saldo, String kundNummer, boolean civilstånd){
+    public void nyKund(){
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Hej Kära nya kund. För att göra en bankkonto i NTI banken så måste ställa dig några frågor.\nVad heter du=");
+        String namn = sc.nextLine();
+        System.out.println("Vad är ditt personNummer? ange I formattet 123456xxxx.");
+        String personNummer = sc.nextLine();
+        System.out.println("Hur mycket pengar kommer du lägga in till ditt konto nu? Ange I kroner.");
+        float saldo = sc.nextFloat();
+        System.out.println("Är du gift? Skriv True elle False");
+        boolean civilstånd = sc.nextBoolean();
 
         this.namn = namn;
         this.personNummer = personNummer;
         this.saldo = saldo;
-        this.kundNummer = kundNummer;
         this.civilstånd = civilstånd;
-
-        String personNummerString = this.personNummer;
-        
-       String fileName = 
-        File personNummer = new File(personNummer);
-        Path personNummer = Path.of("C:/Users/johansson.axel/Programming 2/Bank/bankInfo/");
     }
-
-
-    void nyKundInfoLagring(){
-        String personNummerString = this.personNummer;
-        
-       String fileName = 
-        File personNummer = new File(personNummer);
-        Path personNummer = Path.of("C:/Users/johansson.axel/Programming 2/Bank/bankInfo/");
-
-    }
-    
-
 }
