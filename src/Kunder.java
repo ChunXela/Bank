@@ -27,7 +27,7 @@ public Kunder(){
         System.out.println("Är du gift? Skriv True elle False");
         boolean civilstånd = sc.nextBoolean();
         sc.close();
-        this.namn = namn;
+        this.förnamn = förnamn;
         this.personNummer = personNummer;
         this.saldo = saldo;
         this.civilstånd = civilstånd;
