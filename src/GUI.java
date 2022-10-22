@@ -1,21 +1,41 @@
 import javax.swing.*;
+import javax.swing.border.*;
+
 import java.awt.*;
+import java.awt.event.*;
 
-public class GUI {
 
+public class GUI{
+
+    //Normal variables
 
     int w= 1920;
     int h =1080;
     int bw=300;
     int bh=50;
+
+    // make a new line in strings
+    
+    String newline = System.lineSeparator();  
+
+    //Javax.swing Variables
+
     JFrame frame;
     JPanel panel;
     JButton login;
     JButton createBank;
     JLabel title;
-    
-
-
+    JLabel namnTitle;
+    JLabel efternamnTitle;
+    JLabel personNummerTitle;
+    JLabel civilståndTitle;
+    JTextField namnJTextField;
+    JTextField efternamn;
+    JTextField personNummer;
+    JCheckBox civilståndTrue;
+    JCheckBox civilståndFalse;
+    String namn;
+    Kunder kundNamn = new Kunder();
 
     public GUI(){
         GUIMenu();
@@ -43,21 +63,44 @@ public class GUI {
 
         // Putting in the text NTI BANKEN and putting it in the center
         title = new JLabel("NTI BANKEN");
-        title.setBounds(760, 50, 400, 100);
+        title.setBounds(760, 50, 450, 100);
         title.setForeground(Color.WHITE);
-        title.setFont(new Font("Serif", Font.BOLD, 60));
+        title.setFont(new Font("Serif", Font.BOLD, 50));
         panel.add(title);
+
+        JTextArea description = new JTextArea("     Välkommen till NTI banken" + newline + "Vi är den bästa Banken I hela NTI" + newline + "            (Source: trust me)");
+        description.setBounds(700, 200, 900, 125);
+        description.setBackground(Color.BLACK);
+        description.setForeground(Color.WHITE);
+        description.setFont(new Font(null, Font.PLAIN, 30));
+        panel.add(description);
+        
 
         //Making a button that says login
         login = new JButton("Login");  
         login.setBounds(100, 900, bw, bh);
-        login.setFont(new Font("Serif", Font.BOLD, 30));
+        login.setFont(new Font("Serif", Font.PLAIN, 20));
+        login.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                frame.setVisible(false);
+                Login();
+            }
+        });
+        
         panel.add(login);
 
         //Making a button that says Create bank account
         createBank = new JButton("Create bank account"); 
         createBank.setBounds(1500, 900, bw, bh); 
-        createBank.setFont(new Font("Serif", Font.BOLD, 30));
+
+        createBank.setFont(new Font("Serif", Font.PLAIN, 20));
+        createBank.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                frame.setVisible(false);
+                CreateBank();
+            }
+        });
+
         panel.add(createBank);
 
 
@@ -72,4 +115,148 @@ public class GUI {
         frame.pack();   
         frame.setVisible(true);
     }
+
+
+void CreateBank(){
+   // Creating the frame and the panel
+ 
+    frame = new JFrame("Create new bank");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+    frame.setUndecorated(true);
+
+    panel = new JPanel();
+    panel.setPreferredSize(new Dimension(w, h));
+    panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+    panel.setLayout(null);
+    panel.setBackground(Color.BLACK);
+    frame.getContentPane().add(panel);
+
+    title = new JLabel("NTI BANKEN");
+        title.setBounds(785, 50, 350, 100);
+        title.setForeground(Color.WHITE);
+        title.setFont(new Font("Serif", Font.BOLD, 50));
+        panel.add(title);
+
+    //Making a smaller box and putting it in the center
+
+    JPanel smallbox = new JPanel();
+    smallbox.setBounds(710, 300, 500, 600);
+    smallbox.setBackground(Color.black);
+    smallbox.setLayout(null);
+    Border border = new LineBorder(Color.white, 2, true);
+    smallbox.setBorder(border);
+
+    panel.add(smallbox);
+
+    // title over the namn text field
+    namnTitle = new JLabel("Förnamn");
+    namnTitle.setForeground(Color.white);
+    namnTitle.setFont(new Font("Serif", Font.PLAIN, 20));
+    namnTitle.setBounds(200 ,25, 125,25);
+    smallbox.add(namnTitle);
+
+    // text field for name
+    namnJTextField = new JTextField();
+    namnJTextField.setBounds(150, 60, 200, 30);
+    smallbox.add(namnJTextField);
+
+    namnJTextField.addActionListener(new ActionListener()
+    {
+        public void actionPerformed(ActionEvent e){
+            
+            namn =  namnJTextField.getText();
+            System.out.println(namn);
+            Kunder kundNamn = new Kunder();
+            kundNamn.kundNamn(namn);
+
+
+
+        }
+    });
+
+    System.out.println(namn);
+        // title over the lastname text field
+
+    efternamnTitle = new JLabel("Efternamn");
+    efternamnTitle.setForeground(Color.WHITE);
+    efternamnTitle.setFont(new Font("Serif", Font.PLAIN, 20));
+    efternamnTitle.setBounds(195, 100, 200, 30);
+    smallbox.add(efternamnTitle);
+
+
+        // text field for lastname
+
+    efternamn = new JTextField();
+    efternamn.setBounds(150, 140, 200, 30);
+    smallbox.add(efternamn);
+    
+
+    personNummerTitle = new JLabel("Personnummer");
+    personNummerTitle.setForeground(Color.white);
+    personNummerTitle.setFont(new Font("Serif", Font.PLAIN, 20));
+    personNummerTitle.setBounds(170,185, 200, 30);
+    smallbox.add(personNummerTitle);
+
+        // text field for personal number
+
+    personNummer = new JTextField();
+    personNummer.setBounds(150, 220, 200, 30);
+    smallbox.add(personNummer);
+
+    civilståndTitle = new JLabel("Är du gift?");
+    civilståndTitle.setForeground(Color.white);
+    civilståndTitle.setFont(new Font("Serif", Font.PLAIN, 20));
+    civilståndTitle.setBounds(200,255, 200, 30);
+    smallbox.add(civilståndTitle);
+
+    civilståndTrue = new JCheckBox("True");
+    civilståndTrue.setBackground(Color.black);
+    civilståndTrue.setForeground(Color.white);
+    civilståndTrue.setFont(new Font("Sherif", Font.PLAIN, 16));
+    civilståndTrue.setBounds(255,300,100,30);
+    smallbox.add(civilståndTrue);
+
+    civilståndFalse = new JCheckBox("False");
+    civilståndFalse.setBackground(Color.black);
+    civilståndFalse.setForeground(Color.WHITE);
+    civilståndFalse.setFont(new Font("Sherif", Font.PLAIN, 16));
+    civilståndFalse.setBounds(180,300,100,30);
+    smallbox.add(civilståndFalse);
+
+
+    
+
+
+
+
+
+  
+    frame.pack();
+    frame.setVisible(true);
+
+
+}
+
+void Login(){
+
+    // Creating the frame and the panel
+    
+
+    frame = new JFrame("Login");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+    frame.setUndecorated(true);
+
+    panel = new JPanel();
+    panel.setPreferredSize(new Dimension(w, h));
+    panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+    panel.setLayout(null);
+    panel.setBackground(Color.BLACK);
+
+    frame.getContentPane().add(panel);
+    frame.pack();
+    frame.setVisible(true);
+}
+
 }

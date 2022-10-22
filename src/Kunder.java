@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Kunder {
     
-    public String namn;
+    public String förnamn;
     public String personNummer;
     public float saldo;
     public String kundNummer;
@@ -10,6 +10,10 @@ public class Kunder {
 public Kunder(){
     nyKund();
 }
+
+
+
+
 
     public void nyKund(){
         Scanner sc = new Scanner(System.in);
@@ -27,6 +31,11 @@ public Kunder(){
         this.personNummer = personNummer;
         this.saldo = saldo;
         this.civilstånd = civilstånd;
+    }
+
+    public void kundNamn(String förnamn){
+        this.förnamn = förnamn;
+
     }
 
 }
