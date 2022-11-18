@@ -1,5 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.text.JTextComponent;
+
+import javafx.scene.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -30,12 +33,14 @@ public class GUI{
     JLabel personNummerTitle;
     JLabel civilståndTitle;
     JTextField namnJTextField;
-    JTextField efternamn;
-    JTextField personNummer;
+    JTextField efternamnJTextField;
+    JTextField personNummerJField;
     JCheckBox civilståndTrue;
     JCheckBox civilståndFalse;
     String namn;
-    Kunder kundNamn = new Kunder();
+    String efternamn;
+    String personnummer;
+ 
 
     public GUI(){
         GUIMenu();
@@ -68,10 +73,12 @@ public class GUI{
         title.setFont(new Font("Serif", Font.BOLD, 50));
         panel.add(title);
 
-        JTextArea description = new JTextArea("     Välkommen till NTI banken" + newline + "Vi är den bästa Banken I hela NTI" + newline + "            (Source: trust me)");
+
+        JTextComponent description = new JTextField("Välkommen till NTI banken" + newline + "Vi är den bästa Banken I hela NTI" + newline + "(Source: trust me)");
         description.setBounds(700, 200, 900, 125);
         description.setBackground(Color.BLACK);
         description.setForeground(Color.WHITE);
+        description.setBorder(null);
         description.setFont(new Font(null, Font.PLAIN, 30));
         panel.add(description);
         
@@ -116,6 +123,9 @@ public class GUI{
         frame.setVisible(true);
     }
 
+
+private void addText(JTextPane description, String string, Color white) {
+    }
 
 void CreateBank(){
    // Creating the frame and the panel
@@ -187,9 +197,22 @@ void CreateBank(){
 
         // text field for lastname
 
-    efternamn = new JTextField();
-    efternamn.setBounds(150, 140, 200, 30);
-    smallbox.add(efternamn);
+    efternamnJTextField = new JTextField();
+    efternamnJTextField.setBounds(150, 140, 200, 30);
+    efternamnJTextField.addActionListener(new ActionListener()
+    {
+        public void actionPerformed(ActionEvent e){
+            
+            efternamn =  efternamnJTextField.getText();
+            System.out.println(efternamn);
+            Kunder kundNamn = new Kunder();
+            kundNamn.kundEfternamn(efternamn);
+
+
+
+        }
+    });
+    smallbox.add(efternamnJTextField);
     
 
     personNummerTitle = new JLabel("Personnummer");
@@ -200,9 +223,22 @@ void CreateBank(){
 
         // text field for personal number
 
-    personNummer = new JTextField();
-    personNummer.setBounds(150, 220, 200, 30);
-    smallbox.add(personNummer);
+    personNummerJField = new JTextField();
+    personNummerJField.setBounds(150, 220, 200, 30);
+    personNummerJField.addActionListener(new ActionListener()
+    {
+        public void actionPerformed(ActionEvent e){
+            
+            personnummer =  personNummerJField.getText();
+            System.out.println(personnummer);
+            Kunder kundNamn = new Kunder();
+            kundNamn.kundPersonnummer(personnummer);
+
+
+
+        }
+    });
+    smallbox.add(personNummerJField);
 
     civilståndTitle = new JLabel("Är du gift?");
     civilståndTitle.setForeground(Color.white);
@@ -210,18 +246,18 @@ void CreateBank(){
     civilståndTitle.setBounds(200,255, 200, 30);
     smallbox.add(civilståndTitle);
 
-    civilståndTrue = new JCheckBox("True");
+    civilståndTrue = new JCheckBox("Ja");
     civilståndTrue.setBackground(Color.black);
     civilståndTrue.setForeground(Color.white);
     civilståndTrue.setFont(new Font("Sherif", Font.PLAIN, 16));
-    civilståndTrue.setBounds(255,300,100,30);
+    civilståndTrue.setBounds(255,300,50,30);
     smallbox.add(civilståndTrue);
 
-    civilståndFalse = new JCheckBox("False");
+    civilståndFalse = new JCheckBox("Nej");
     civilståndFalse.setBackground(Color.black);
     civilståndFalse.setForeground(Color.WHITE);
     civilståndFalse.setFont(new Font("Sherif", Font.PLAIN, 16));
-    civilståndFalse.setBounds(180,300,100,30);
+    civilståndFalse.setBounds(180,300,50,30);
     smallbox.add(civilståndFalse);
 
 

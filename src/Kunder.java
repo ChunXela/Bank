@@ -1,41 +1,64 @@
-import java.util.Scanner;
+import java.util.*;
 public class Kunder {
     
-    public String förnamn;
-    public String personNummer;
-    public float saldo;
-    public String kundNummer;
-    public boolean civilstånd;
+    public String name;
+    public String lastname;
+    public String personnumber;
+    public float balance;
+    public int accountNumber;
+    HashMap<String, Integer> account = new HashMap<String, Integer>();
 
-public Kunder(){
-    nyKund();
-}
-
+    Scanner sc = new Scanner(System.in);
 
 
 
+    public Kunder(){
+        getName();
+        getLastname();
+        getPersonNumber();
+        getAccountNumber();
+        storeInHashmap(personnumber, accountNumber);
 
-    public void nyKund(){
-        Scanner sc = new Scanner(System.in);
+        System.out.println("Welcome " + name + " " + lastname + " to the first NTI bank");
 
-        System.out.println("Hej Kära nya kund. För att göra en bankkonto i NTI banken så måste ställa dig några frågor.\nVad heter du?");
-        String namn = sc.nextLine();
-        System.out.println("Vad är ditt personNummer? ange I formattet 123456xxxx.");
-        String personNummer = sc.nextLine();
-        System.out.println("Hur mycket pengar kommer du lägga in till ditt konto nu? Ange I kroner.");
-        float saldo = sc.nextFloat();
-        System.out.println("Är du gift? Skriv True elle False");
-        boolean civilstånd = sc.nextBoolean();
-        sc.close();
-        this.förnamn = förnamn;
-        this.personNummer = personNummer;
-        this.saldo = saldo;
-        this.civilstånd = civilstånd;
+        System.out.println(account);
+       
     }
 
-    public void kundNamn(String förnamn){
-        this.förnamn = förnamn;
+    public String getName(){
+
+        System.out.println("What is your first name?");
+        name = sc.nextLine();
+        return name;
+    } 
+
+    public String getLastname(){
+         System.out.println("What is your last name?");
+        lastname = sc.nextLine();
+        return lastname;
+    }
+
+    public String getPersonNumber(){
+        System.out.println("What is your personal identity number?");
+        personnumber = sc.nextLine();
+        return personnumber;
+    }
+
+    public int getAccountNumber(){
+
+        accountNumber = (int)((Math.random() + 1 ) * 100);
+        return accountNumber;
+    }
+
+    private void storeInHashmap(String personnumber, int accountNumber){
+        account.put(personnumber, accountNumber);
+    }
+
+    private void checkInHashmap(){
 
     }
+
+
+
 
 }
