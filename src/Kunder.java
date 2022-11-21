@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 public class Kunder {
     
     public String name;
@@ -6,10 +7,10 @@ public class Kunder {
     public String personnumber;
     public float balance;
     public int accountNumber;
-    HashMap<String, Integer> account = new HashMap<String, Integer>();
-
+    File file = new File("./customerInfo/customerInfo.csv");
     Scanner sc = new Scanner(System.in);
 
+    
 
 
     public Kunder(){
@@ -17,7 +18,8 @@ public class Kunder {
         getLastname();
         getPersonNumber();
         getAccountNumber();
-        storeInHashmap(personnumber, accountNumber);
+        storeInFile(name, lastname, personnumber, accountNumber);
+
 
         System.out.println("Welcome " + name + " " + lastname + " to the first NTI bank");
 
@@ -50,12 +52,28 @@ public class Kunder {
         return accountNumber;
     }
 
-    private void storeInHashmap(String personnumber, int accountNumber){
-        account.put(personnumber, accountNumber);
-    }
+    public void storeInFile(String namn, String lastname, String personnumber, int accountNumber){
+         
+        try{
 
-    private void checkInHashmap(){
+            FileWriter outputfile = new FileWriter(file);
 
+            CSVWriter writer = new CSVWriter(outputfile);
+
+            List<String[]> data = new ArrayList<String[]>();
+
+            data.add(new String[] { "Name", "Lastname", "Person number", "Account numbers" });
+            data.add(new String[] { name, lastname, personnumber, accountNumber });
+            writer.writeAll(data);  
+            // closing writer connection
+            writer.close();
+
+        }
+
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 
