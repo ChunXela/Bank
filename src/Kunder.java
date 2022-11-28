@@ -1,30 +1,26 @@
 import java.util.*;
 import java.io.*;
-public class Kunder {
+import com.opencsv.*;
+public class Kunder{
     
     public String name;
     public String lastname;
     public String personnumber;
-    public float balance;
+    public double balance;
     public int accountNumber;
     File file = new File("./customerInfo/customerInfo.csv");
     Scanner sc = new Scanner(System.in);
+    
+    FileWriter outputfile = new FileWriter(file);
+    CSVWriter writer = new CSVWriter(outputfile);
+    List<String[]> data = new ArrayList<String[]>();
+
+    data.add(new String[] { "Name", "Lastname", "Person number", "Account numbers" });
 
     
 
 
     public Kunder(){
-        getName();
-        getLastname();
-        getPersonNumber();
-        getAccountNumber();
-        storeInFile(name, lastname, personnumber, accountNumber);
-
-
-        System.out.println("Welcome " + name + " " + lastname + " to the first NTI bank");
-
-        System.out.println(account);
-       
     }
 
     public String getName(){
@@ -34,15 +30,38 @@ public class Kunder {
         return name;
     } 
 
+    public String getNameGui(String name){
+        
+        name = this.name;
+
+        return name;
+    }
+
     public String getLastname(){
          System.out.println("What is your last name?");
         lastname = sc.nextLine();
         return lastname;
     }
 
+    
+    public String getLastnameGui(String lastname){
+        
+        lastname = this.lastname;
+
+        return lastname;
+    }
+
     public String getPersonNumber(){
         System.out.println("What is your personal identity number?");
         personnumber = sc.nextLine();
+        return personnumber;
+    }
+
+    
+    public String getPersonnumberGui(String personnumber){
+        
+        personnumber = this.personnumber;
+
         return personnumber;
     }
 
@@ -56,14 +75,8 @@ public class Kunder {
          
         try{
 
-            FileWriter outputfile = new FileWriter(file);
-
-            CSVWriter writer = new CSVWriter(outputfile);
-
-            List<String[]> data = new ArrayList<String[]>();
-
-            data.add(new String[] { "Name", "Lastname", "Person number", "Account numbers" });
-            data.add(new String[] { name, lastname, personnumber, accountNumber });
+            String accountNumberS = Integer.toString(accountNumber);
+            data.add(new String[] { name, lastname, personnumber, accountNumberS });
             writer.writeAll(data);  
             // closing writer connection
             writer.close();
