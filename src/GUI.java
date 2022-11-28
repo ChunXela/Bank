@@ -1,14 +1,11 @@
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.text.JTextComponent;
-
-import javafx.scene.*;
-
 import java.awt.*;
 import java.awt.event.*;
 
 
-public class GUI{
+public class GUI extends Kunder{
 
     //Normal variables
 
@@ -31,19 +28,14 @@ public class GUI{
     JLabel namnTitle;
     JLabel efternamnTitle;
     JLabel personNummerTitle;
-    JLabel civilståndTitle;
     JTextField namnJTextField;
     JTextField efternamnJTextField;
     JTextField personNummerJField;
-    JCheckBox civilståndTrue;
-    JCheckBox civilståndFalse;
-    String namn;
-    String efternamn;
-    String personnummer;
- 
 
     public GUI(){
         GUIMenu();
+        storeInFile(name, lastname, personnumber, accountNumber);
+
     }
     
     void GUIMenu(){
@@ -123,10 +115,6 @@ public class GUI{
         frame.setVisible(true);
     }
 
-
-private void addText(JTextPane description, String string, Color white) {
-    }
-
 void CreateBank(){
    // Creating the frame and the panel
  
@@ -175,17 +163,14 @@ void CreateBank(){
     {
         public void actionPerformed(ActionEvent e){
             
-            namn =  namnJTextField.getText();
-            System.out.println(namn);
-            Kunder kundNamn = new Kunder();
-            kundNamn.kundNamn(namn);
+            name =  namnJTextField.getText();
 
-
-
+           getNameGui(name);
+        
         }
     });
 
-    System.out.println(namn);
+    System.out.println(name);
         // title over the lastname text field
 
     efternamnTitle = new JLabel("Efternamn");
@@ -203,13 +188,9 @@ void CreateBank(){
     {
         public void actionPerformed(ActionEvent e){
             
-            efternamn =  efternamnJTextField.getText();
-            System.out.println(efternamn);
-            Kunder kundNamn = new Kunder();
-            kundNamn.kundEfternamn(efternamn);
+            lastname =  efternamnJTextField.getText();
 
-
-
+            getLastnameGui(lastname);
         }
     });
     smallbox.add(efternamnJTextField);
@@ -229,48 +210,17 @@ void CreateBank(){
     {
         public void actionPerformed(ActionEvent e){
             
-            personnummer =  personNummerJField.getText();
-            System.out.println(personnummer);
-            Kunder kundNamn = new Kunder();
-            kundNamn.kundPersonnummer(personnummer);
+            personnumber =  personNummerJField.getText();
 
+            getPersonnumberGui(personnumber);
 
 
         }
     });
     smallbox.add(personNummerJField);
-
-    civilståndTitle = new JLabel("Är du gift?");
-    civilståndTitle.setForeground(Color.white);
-    civilståndTitle.setFont(new Font("Serif", Font.PLAIN, 20));
-    civilståndTitle.setBounds(200,255, 200, 30);
-    smallbox.add(civilståndTitle);
-
-    civilståndTrue = new JCheckBox("Ja");
-    civilståndTrue.setBackground(Color.black);
-    civilståndTrue.setForeground(Color.white);
-    civilståndTrue.setFont(new Font("Sherif", Font.PLAIN, 16));
-    civilståndTrue.setBounds(255,300,50,30);
-    smallbox.add(civilståndTrue);
-
-    civilståndFalse = new JCheckBox("Nej");
-    civilståndFalse.setBackground(Color.black);
-    civilståndFalse.setForeground(Color.WHITE);
-    civilståndFalse.setFont(new Font("Sherif", Font.PLAIN, 16));
-    civilståndFalse.setBounds(180,300,50,30);
-    smallbox.add(civilståndFalse);
-
-
-    
-
-
-
-
-
   
     frame.pack();
     frame.setVisible(true);
-
 
 }
 
