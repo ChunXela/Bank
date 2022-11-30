@@ -11,11 +11,8 @@ public class Kunder{
     File file = new File("./customerInfo/customerInfo.csv");
     Scanner sc = new Scanner(System.in);
     
-    FileWriter outputfile = new FileWriter(file);
-    CSVWriter writer = new CSVWriter(outputfile);
-    List<String[]> data = new ArrayList<String[]>();
+         
 
-    data.add(new String[] { "Name", "Lastname", "Person number", "Account numbers" });
 
     
 
@@ -72,11 +69,17 @@ public class Kunder{
     }
 
     public void storeInFile(String namn, String lastname, String personnumber, int accountNumber){
-         
+
+        
+             
+        
         try{
 
+            BufferedWriter outputfile = new BufferedWriter(new FileWriter(file, true));
+    CSVWriter writer = new CSVWriter(outputfile);
+    List<String[]> data = new ArrayList<String[]>();
             String accountNumberS = Integer.toString(accountNumber);
-            data.add(new String[] { name, lastname, personnumber, accountNumberS });
+            data.add(new String[] { name, lastname, personnumber, accountNumberS});
             writer.writeAll(data);  
             // closing writer connection
             writer.close();

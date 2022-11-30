@@ -31,13 +31,19 @@ public class GUI extends Kunder{
     JTextField namnJTextField;
     JTextField efternamnJTextField;
     JTextField personNummerJField;
+    GridBagConstraints gbc = new GridBagConstraints();
+
+    
 
     public GUI(){
         GUIMenu();
         storeInFile(name, lastname, personnumber, accountNumber);
 
+
     }
-    
+
+    // Menu
+
     void GUIMenu(){
 
         // make the frame
@@ -47,12 +53,13 @@ public class GUI extends Kunder{
         // make the panel
         panel  = new JPanel();
         panel.setPreferredSize(new Dimension(w, h));
+        frame.setLayout(new GridBagLayout());
 
         // setting a border
         panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 
-        //Setting the layout to null
-        panel.setLayout(null);
+        //Setting the layout to a 2x2 grid
+        panel.setLayout(new GridBagLayout());
         
         // making the frame Fullscreen
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -60,19 +67,10 @@ public class GUI extends Kunder{
 
         // Putting in the text NTI BANKEN and putting it in the center
         title = new JLabel("NTI BANKEN");
-        title.setBounds(760, 50, 450, 100);
         title.setForeground(Color.WHITE);
         title.setFont(new Font("Serif", Font.BOLD, 50));
         panel.add(title);
 
-
-        JTextComponent description = new JTextField("Välkommen till NTI banken" + newline + "Vi är den bästa Banken I hela NTI" + newline + "(Source: trust me)");
-        description.setBounds(700, 200, 900, 125);
-        description.setBackground(Color.BLACK);
-        description.setForeground(Color.WHITE);
-        description.setBorder(null);
-        description.setFont(new Font(null, Font.PLAIN, 30));
-        panel.add(description);
         
 
         //Making a button that says login
@@ -85,8 +83,13 @@ public class GUI extends Kunder{
                 Login();
             }
         });
-        
-        panel.add(login);
+
+        gbc.gridx = 1000 ;
+        gbc.gridy = 5;
+       // gbc.gridwidth = 10;
+      //  gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        panel.add(login, gbc);
 
         //Making a button that says Create bank account
         createBank = new JButton("Create bank account"); 
@@ -100,7 +103,12 @@ public class GUI extends Kunder{
             }
         });
 
-        panel.add(createBank);
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        //gbc.gridwidth = 2;
+       // gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        panel.add(createBank, gbc);
 
 
         //setting the background of the application to black
@@ -121,20 +129,19 @@ void CreateBank(){
     frame = new JFrame("Create new bank");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+    frame.setLayout(new GridLayout(2,2));
     frame.setUndecorated(true);
 
     panel = new JPanel();
     panel.setPreferredSize(new Dimension(w, h));
     panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
-    panel.setLayout(null);
     panel.setBackground(Color.BLACK);
     frame.getContentPane().add(panel);
 
     title = new JLabel("NTI BANKEN");
-        title.setBounds(785, 50, 350, 100);
-        title.setForeground(Color.WHITE);
-        title.setFont(new Font("Serif", Font.BOLD, 50));
-        panel.add(title);
+    title.setForeground(Color.WHITE);
+    title.setFont(new Font("Serif", Font.BOLD, 70));
+    panel.add(title);
 
     //Making a smaller box and putting it in the center
 
